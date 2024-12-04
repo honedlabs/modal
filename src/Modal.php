@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Momentum\Modal;
+namespace Honed\Modal;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Responsable;
@@ -15,11 +15,13 @@ class Modal implements Responsable
 {
     protected string $baseURL;
 
+    /**
+     * @param  array<string, mixed>|Arrayable<string, mixed>  $props
+     */
     public function __construct(
         protected string $component,
         protected array|Arrayable $props = []
-    ) {
-    }
+    ) {}
 
     public function baseRoute(string $name, mixed $parameters = [], bool $absolute = true): static
     {
@@ -40,7 +42,10 @@ class Modal implements Responsable
         return $this;
     }
 
-    public function with(array $props): static
+    /**
+     * @param  array<string, mixed>|Arrayable<string, mixed>  $props
+     */
+    public function with(array|Arrayable $props): static
     {
         $this->props = $props;
 
@@ -78,6 +83,7 @@ class Modal implements Responsable
 
         $request->headers->replace($originalRequest->headers->all());
 
+        /** @phpstan-ignore-next-line */
         $request->setJson($originalRequest->json())
             ->setUserResolver(fn () => $originalRequest->getUserResolver())
             ->setRouteResolver(fn () => $baseRoute)
@@ -101,6 +107,9 @@ class Modal implements Responsable
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function component(): array
     {
         return [
@@ -136,6 +145,7 @@ class Modal implements Responsable
             return $response->toResponse($request);
         }
 
+        /** @phpstan-ignore-next-line */
         return $response;
     }
 }

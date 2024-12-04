@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Momentum\Modal\Tests\Stubs\Tweet;
-use Momentum\Modal\Tests\Stubs\User;
+use Honed\Modal\Tests\Stubs\Tweet;
+use Honed\Modal\Tests\Stubs\User;
 
-uses(Momentum\Modal\Tests\TestCase::class)->in('Pest');
+uses(Honed\Modal\Tests\TestCase::class)->in('Pest');
 
 function user(): User
 {

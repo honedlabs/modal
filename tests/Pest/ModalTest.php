@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
+use Honed\Modal\Tests\Stubs\ExampleController;
+use Honed\Modal\Tests\Stubs\ExampleMiddleware;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
-use Momentum\Modal\Tests\Stubs\ExampleController;
-use Momentum\Modal\Tests\Stubs\ExampleMiddleware;
+
 use function Pest\Laravel\from;
 use function Pest\Laravel\get;
 

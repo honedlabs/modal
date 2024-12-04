@@ -1,49 +1,78 @@
 {
-  "name": "based/momentum-modal",
-  "description": "Build dynamic modal dialogs for your Inertia-powered Laravel apps",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Boris Lepikhin",
-      "email": "boris@lepikhin.com"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Momentum\\Modal\\": "src/",
-      "Momentum\\Modal\\Tests\\": "tests/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Momentum\\Modal\\Tests\\": "tests/"
-    }
-  },
-  "require": {
-    "php": "^8.0",
-    "illuminate/support": "^8.24|^9.0|^10.0|^11.0",
-    "inertiajs/inertia-laravel": "^0.6|^1.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "^6.9|^7.0|^8.0|^9.0",
-    "nunomaduro/larastan": "^1.0|^2.0",
-    "pestphp/pest": "^1.2|^2.34",
-    "pestphp/pest-plugin-laravel": "^1.0|^2.3",
-    "laravel/pint": "^0.1.3|^1.13"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Momentum\\Modal\\ModalServiceProvider"
-      ]
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "config": {
-    "allow-plugins": {
-      "pestphp/pest-plugin": true
-    }
-  }
+	"name": "honed/modal",
+	"description": "Build dynamic modal dialogs for your Inertia-powered Laravel apps",
+	"keywords": [
+		"honed",
+		"laravel",
+		"inertia",
+		"modal"
+	],
+	"homepage": "https://github.com/honedlabs/modal",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Joshua Wallace",
+			"email": "josh@joshua-wallace.com",
+			"role": "Developer",
+			"homepage": "https://joshua-wallace.com"
+		},
+		{
+			"name": "Boris Lepikhin",
+			"email": "boris@lepikhin.com"
+		}
+	],
+	"require": {
+		"php": "^8.2",
+		"illuminate/support": "^11.0",
+		"inertiajs/inertia-laravel": "^1.0|^2.0"
+	},
+	"require-dev": {
+		"larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^9.0.0",
+        "pestphp/pest": "^3.5.1",
+        "pestphp/pest-plugin-arch": "^3.0.0",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan-deprecation-rules": "^2.0.1",
+        "phpstan/phpstan-phpunit": "^2.0.3",
+		"pestphp/pest-plugin-laravel": "^3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Honed\\Modal\\": "src/",
+			"Honed\\Modal\\Tests\\": "tests/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Honed\\Modal\\Tests\\": "tests/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Honed\\Modal\\ModalServiceProvider"
+			]
+		}
+	},
+	"scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "check": [
+            "@composer run analyse",
+            "@composer run test",
+            "@composer run format"
+        ]
+    },
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true,
+			"phpstan/extension-installer": true
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

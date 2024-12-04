@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Momentum\Modal;
+namespace Honed\Modal;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\ServiceProvider;

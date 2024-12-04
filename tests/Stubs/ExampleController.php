@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Momentum\Modal\Tests\Stubs;
+namespace Honed\Modal\Tests\Stubs;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;

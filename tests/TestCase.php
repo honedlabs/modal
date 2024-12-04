@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Momentum\Modal\Tests;
+namespace Honed\Modal\Tests;
 
+use Honed\Modal\ModalServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
 use Inertia\ServiceProvider as InertiaServiceProvider;
-use Momentum\Modal\ModalServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
@@ -18,7 +18,7 @@ class TestCase extends TestbenchTestCase
     {
         parent::setUp();
 
-        View::addLocation(__DIR__ . '/Stubs');
+        View::addLocation(__DIR__.'/Stubs');
         Inertia::setRootView('app');
         config()->set('inertia.testing.ensure_pages_exist', false);
         config()->set('inertia.testing.page_paths', [realpath(__DIR__)]);
