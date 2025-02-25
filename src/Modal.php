@@ -4,16 +4,23 @@ declare(strict_types=1);
 
 namespace Honed\Modal;
 
+use Honed\Modal\Support\ModalHeader;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
+use Inertia\Support\Header;
 
 class Modal implements Responsable
 {
-    protected string $baseURL;
+    /**
+     * The route to display the modal on if not coming from an Inertia page.
+     *
+     * @var string
+     */
+    protected $baseURL;
 
     /**
      * @param  array<string, mixed>|Arrayable<string, mixed>  $props
@@ -23,6 +30,9 @@ class Modal implements Responsable
         protected array|Arrayable $props = []
     ) {}
 
+    /**
+     * Set the base named route for the modal.
+     */
     public function baseRoute(string $name, mixed $parameters = [], bool $absolute = true): static
     {
         $this->baseURL = route($name, $parameters, $absolute);
@@ -30,11 +40,9 @@ class Modal implements Responsable
         return $this;
     }
 
-    public function basePageRoute(string $name, mixed $parameters = [], bool $absolute = true): static
-    {
-        return $this->baseRoute($name, $parameters, $absolute);
-    }
-
+    /**
+     * Set the base URL for the modal.
+     */
     public function baseURL(string $url): static
     {
         $this->baseURL = $url;
@@ -58,9 +66,9 @@ class Modal implements Responsable
         inertia()->share(['modal' => $this->component()]);
 
         // render background component on first visit
-        if (request()->header('X-Inertia') && request()->header('X-Inertia-Partial-Component')) {
+        if (request()->header(Header::INERTIA) && request()->header(Header::PARTIAL_COMPONENT)) {
             /** @phpstan-ignore-next-line */
-            return inertia()->render(request()->header('X-Inertia-Partial-Component'));
+            return inertia()->render(request()->header(Header::PARTIAL_COMPONENT));
         }
 
         /** @var Request $originalRequest */
@@ -117,26 +125,29 @@ class Modal implements Responsable
             'baseURL' => $this->baseURL,
             'redirectURL' => $this->redirectURL(),
             'props' => $this->props,
-            'key' => request()->header('X-Inertia-Modal-Key', Str::uuid()->toString()),
+            'key' => request()->header(ModalHeader::KEY, Str::uuid()->toString()),
             'nonce' => Str::uuid()->toString(),
         ];
     }
 
     protected function redirectURL(): string
     {
-        if (request()->header('X-Inertia-Modal-Redirect')) {
-            return request()->header('X-Inertia-Modal-Redirect');
+        if (request()->header(ModalHeader::REDIRECT)) {
+            return request()->header(ModalHeader::REDIRECT);
         }
 
         $referer = request()->headers->get('referer');
 
-        if (request()->header('X-Inertia') && $referer && $referer != url()->current()) {
+        if (request()->header(Header::INERTIA) && $referer && $referer != url()->current()) {
             return $referer;
         }
 
         return $this->baseURL;
     }
 
+    /**
+     * Create an HTTP response that represents the modal.
+     */
     public function toResponse($request)
     {
         $response = $this->render();

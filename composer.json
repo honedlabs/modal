@@ -14,7 +14,6 @@
 		{
 			"name": "Joshua Wallace",
 			"email": "josh@joshua-wallace.com",
-			"role": "Developer",
 			"homepage": "https://joshua-wallace.com"
 		},
 		{
@@ -24,13 +23,13 @@
 	],
 	"require": {
 		"php": "^8.2",
-		"illuminate/support": "^11.0",
-		"inertiajs/inertia-laravel": "^1.0|^2.0"
+		"illuminate/support": "^11.0||^12.0",
+		"inertiajs/inertia-laravel": "^1.0||^2.0"
 	},
 	"require-dev": {
 		"larastan/larastan": "^3.0",
         "laravel/pint": "^1.18",
-        "orchestra/testbench": "^9.0.0",
+        "orchestra/testbench": "^9.0.0||^10.0.0",
         "pestphp/pest": "^3.5.1",
         "pestphp/pest-plugin-arch": "^3.0.0",
         "phpstan/extension-installer": "^1.4.3",
