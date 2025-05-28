@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
+use Inertia\Support\Header;
+use function Pest\Laravel\get;
+use function Pest\Laravel\from;
 use Honed\Modal\Support\ModalHeader;
+use Illuminate\Support\Facades\Route;
+use Inertia\Testing\AssertableInertia;
 use Honed\Modal\Tests\Stubs\ExampleController;
 use Honed\Modal\Tests\Stubs\ExampleMiddleware;
-use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Route;
-use Inertia\Support\Header;
-use Inertia\Testing\AssertableInertia;
-
-use function Pest\Laravel\from;
-use function Pest\Laravel\get;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 
 beforeEach(function () {
     Route::middleware([StartSession::class, ExampleMiddleware::class, SubstituteBindings::class])
@@ -122,4 +121,6 @@ it('binds route parameters correctly', function () {
         });
 });
 
-it('executes config middleware', function () {})->skip();
+it('executes config middleware', function () {
+
+})->skip();
