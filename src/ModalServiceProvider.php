@@ -12,7 +12,7 @@ class ModalServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services for the package.
-     * 
+     *
      * @return void
      */
     public function register()
@@ -22,7 +22,7 @@ class ModalServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application services for the package.
-     * 
+     *
      * @return void
      */
     public function boot()
@@ -33,12 +33,12 @@ class ModalServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->offerPublishing();
         }
-        
+
     }
 
     /**
      * Register macros on the Inertia response factory.
-     * 
+     *
      * @return void
      */
     protected function registerResponseMacros()
@@ -60,7 +60,7 @@ class ModalServiceProvider extends ServiceProvider
 
     /**
      * Register macros on the TestResponse class.
-     * 
+     *
      * @return void
      */
     protected function registerTestingMacros()

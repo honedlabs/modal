@@ -6,7 +6,6 @@ namespace Honed\Modal;
 
 use Honed\Modal\Concerns\RespondsWithInertia;
 use Honed\Modal\Support\ModalHeader;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -15,7 +14,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use Inertia\Support\Header;
 
 class Modal implements Responsable
 {
@@ -78,8 +76,6 @@ class Modal implements Responsable
 
     /**
      * Get the base URL for the modal.
-     *
-     * @return string
      */
     public function getBaseUrl(): string
     {
@@ -101,7 +97,7 @@ class Modal implements Responsable
 
     /**
      * Get the excluded middleware to exclude when dispatching the base request.
-     * 
+     *
      * @return array<int, class-string>
      */
     public static function getExcludedMiddleware()

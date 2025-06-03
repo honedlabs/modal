@@ -3,8 +3,8 @@
 namespace Honed\Modal\Concerns;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Support\Header;
 
 trait RespondsWithInertia
@@ -33,7 +33,7 @@ trait RespondsWithInertia
     /**
      * Set the component view.
      *
-     * @param string $component
+     * @param  string  $component
      * @return void
      */
     public function setComponent($component)
@@ -43,7 +43,7 @@ trait RespondsWithInertia
 
     /**
      * Set the props to pass to the view.
-     * 
+     *
      * @param  array<string, mixed>|\Illuminate\Contracts\Support\Arrayable<string, mixed>  $props
      * @return void
      */
@@ -76,8 +76,8 @@ trait RespondsWithInertia
 
     /**
      * Set the request instance to be the given request instance.
-     * 
-     * @param \Illuminate\Http\Request $request
+     *
+     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     public function request($request)
@@ -87,7 +87,7 @@ trait RespondsWithInertia
 
     /**
      * Set the request instance to be the application request instance.
-     * 
+     *
      * @return void
      */
     public function newRequest()
@@ -100,8 +100,8 @@ trait RespondsWithInertia
 
     /**
      * Copy the request instance to a new request at the given URI.
-     * 
-     * @param string $uri
+     *
+     * @param  string  $uri
      * @return \Illuminate\Http\Request
      */
     public function copyRequest($uri)
@@ -119,7 +119,7 @@ trait RespondsWithInertia
 
     /**
      * Determine if the request is an Inertia request.
-     * 
+     *
      * @return bool
      */
     public function isInertia()
@@ -129,7 +129,7 @@ trait RespondsWithInertia
 
     /**
      * Determine if the request is a partial request.
-     * 
+     *
      * @return bool
      */
     public function isPartial()
@@ -139,7 +139,7 @@ trait RespondsWithInertia
 
     /**
      * Get the partial component from the request.
-     * 
+     *
      * @return string|null
      */
     public function getPartial()
@@ -150,15 +150,15 @@ trait RespondsWithInertia
 
     /**
      * Get the referer from the request, only if it is an Inertia request.
-     * 
+     *
      * @return string|null
      */
     public function getReferer()
     {
         $referer = $this->request->headers->get('referer');
 
-        if ($this->isInertia() 
-            && $referer 
+        if ($this->isInertia()
+            && $referer
             && $referer !== url()->current()
         ) {
             return $referer;
