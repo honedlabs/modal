@@ -1,15 +1,16 @@
 laravel: '@testbench'
 
 providers:
-  - Workbench\App\Providers\WorkbenchServiceProvider
+  - App\Providers\WorkbenchServiceProvider
   - Honed\Modal\ModalServiceProvider
   - Inertia\ServiceProvider
+  - Illuminate\Foundation\Support\Providers\RouteServiceProvider
 
 migrations:
   - workbench/database/migrations
 
 seeders:
-  - Workbench\Database\Seeders\DatabaseSeeder
+  - Database\Seeders\DatabaseSeeder
 
 workbench:
   start: '/'

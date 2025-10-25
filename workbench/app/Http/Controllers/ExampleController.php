@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Honed\Modal\Tests\Stubs;
+namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,20 +16,20 @@ class ExampleController
         return Inertia::render('Users/Show', ['user' => $user, 'page' => $request->input('page')]);
     }
 
-    public function tweet(User $user, Tweet $tweet)
+    public function product(User $user, Product $product)
     {
-        return Inertia::modal('Tweets/Show', [
+        return Inertia::modal('Products/Show', [
             'user' => $user,
-            'tweet' => $tweet,
+            'product' => $product,
         ])
             ->baseRoute('users.show', $user);
     }
 
-    public function differentParameters(User $user, Tweet $tweet)
+    public function differentParameters(User $user, Product $product)
     {
-        return Inertia::modal('Tweets/Show', [
+        return Inertia::modal('Products/Show', [
             'user' => $user,
-            'tweet' => $tweet,
+            'product' => $product,
         ])
             ->baseRoute('users.show', User::where('id', '<>', $user->id)->first());
     }
@@ -37,11 +39,11 @@ class ExampleController
         return Inertia::render('Users/Show', ['user' => $user]);
     }
 
-    public function rawTweet($user, $tweet)
+    public function rawProduct($user, $product)
     {
-        return Inertia::modal('Tweets/Show', [
+        return Inertia::modal('Products/Show', [
             'user' => $user,
-            'tweet' => $tweet,
+            'product' => $product,
         ])
             ->baseRoute('raw.users.show', $user);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Honed\Modal\Tests\Stubs;
+namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;

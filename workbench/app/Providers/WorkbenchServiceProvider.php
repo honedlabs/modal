@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Workbench\App\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\View;
+
+use function Orchestra\Testbench\workbench_path;
 
 class WorkbenchServiceProvider extends ServiceProvider
 {
@@ -13,14 +17,18 @@ class WorkbenchServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        View::addLocation(workbench_path('resources/views'));
+
+        Config::set([
+            'inertia.testing' => [
+                'ensure_pages_exist' => false,
+                'page_paths' => [realpath(__DIR__)],
+            ],
+        ]);
     }
 
     /**
      * Bootstrap services.
      */
-    public function boot(): void
-    {
-        //
-    }
+    public function boot(): void {}
 }
